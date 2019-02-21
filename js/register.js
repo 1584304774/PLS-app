@@ -4,13 +4,15 @@ window.onload = function(){
 		$uemail = $("#uemail"),
 		$pwd = $("#pwd"),
 		$surepwd = $("#surepwd"),
+		$birth = $("#birth"),
 		$submit = $("#submit"),
 		$s1 = $("#s1"),
 		$s2 = $("#s2"),
 		$s3 = $("#s3"),
 		$s4 = $("#s4"),
 		$s5 = $("#s5"),
-		$s6 = $("#s6");
+		$s6 = $("#s6"),
+		$s7 = $("#s7");
 	var flagName = null;
 	$uname.on("blur",function(){
 		var reg1 = /^(\w{6,})|([\u4e00-\u9fa5])$/;
@@ -81,13 +83,29 @@ window.onload = function(){
 			flagSurePwd = false;
 		}
 	})
+	var flagBirth = null;
+	$birth.on("blur",function(){
+		var reg5 = /^\d{4}-\d{2}(-\d{2})?$/;
+		var birthVal = $birth.val();
+		if(reg5.test(birthVal)){
+			$s7.html("✔");
+			$s7.css("color","#0f0");
+			flagBirth = true;
+		}else{
+			$s7.html("✖");
+			$s7.css("color","#f00");
+			flagBirth = false;
+		}
+	})
 	$submit.on("click",function(){
-		if(flagName && flagPhone && flagEmail && flagPwd && flagSurePwd){
+		if(flagName && flagPhone && flagEmail && flagPwd && flagSurePwd && flagBirth){
 			var obj = {
 				uname : $uname.val(),
 				phone : $phone.val(),
 				uemail : $uemail.val(),
-				pwd : $pwd.val()
+				pwd : $pwd.val(),
+				sex : $(":radio:checked").val(),
+				birth : $birth.val()
 			};
 			obj = JSON.stringify(obj);
 			setCookie("infor",obj,3);

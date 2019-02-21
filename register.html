@@ -10,13 +10,47 @@
 	<body>
 		<img src="images/register.jpg"/>
 		<form action="" method="post">
-			<p><em>昵称：</em><input type="text" id="uname"/><span id="s1">*</span></p>
-			<p><em>手机号：</em><input type="text" id="phone"/><span id="s2">*</span></p>
-			<p><em>邮箱号：</em><input type="text" id="uemail"/><span id="s3">*</span></p>
-			<p><em>密码：</em><input type="password" id="pwd"/><span id="s4">*</span></p>
-			<p><em>确认密码：</em><input type="password" id="surepwd"/><span id="s5">*</span></p>
-			<p><input type="button" value="注册" id="submit"/></p>
-			<p><span id="s6">请耐心完成注册!</span></p>
+			<p>
+				<label for="uname">昵称：</label>
+				<input type="text" id="uname"/>
+				<span id="s1"></span>
+			</p>
+			<p>
+				<label for="phone">手机号：</label>
+				<input type="text" id="phone"/>
+				<span id="s2"></span>
+			</p>
+			<p>
+				<label for="uemail">邮箱号：</label>
+				<input type="text" id="uemail"/>
+				<span id="s3"></span>
+			</p>
+			<p>
+				<label for="pwd">密码：</label>
+				<input type="password" id="pwd"/>
+				<span id="s4"></span>
+			</p>
+			<p>
+				<label for="surepwd">确认密码：</label>
+				<input type="password" id="surepwd"/>
+				<span id="s5"></span>
+			</p>
+			<p>
+				<label>性别：</label>
+				<input type="radio" name="sex" id="male" value="男"/><label for="male">男</label>
+				<input type="radio" name="sex" id="female" value="女"/><label for="female">女</label>
+			</p>
+			<p>
+				<label for="birth">生辰八字：</label>
+				<input type="text" id="birth"/>
+				<span id="s7"></span>
+			</p>
+			<p>
+				<input type="button" value="注册" id="submit"/>
+			</p>
+			<p>
+				<span id="s6">请耐心完成注册!</span>
+			</p>
 		</form>
 	</body>
 </html>
