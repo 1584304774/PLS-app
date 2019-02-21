@@ -4,14 +4,15 @@ html{font-size: 26.67vw;}
 
 img{width: 100%;height: 7rem;}
 form{position: absolute;left: 15%;top: 20%;}
-form p input{width: 1.7rem;height: 0.3rem;margin-top: 0.3rem;}
+form p input{width: 1.7rem;height: 0.3rem;margin-top: 0.3rem;font-size: 0.2rem;}
 #submit{width: 1rem;margin-left: 0.8rem;font-size: 0.2rem;border-radius: 0.1rem;}
 form p em{font-size: 0.2rem;}
 #uname{margin-left: 0.4rem;}
 #phone{margin-left: 0.2rem;}
 #uemail{margin-left: 0.2rem;}
 #pwd{margin-left: 0.4rem;}
-form p span{color: red;font-size: 0.2rem;}
+#s6{margin-left: 0.5rem;font-size: 0.2rem;}
+form p span{color: red;font-size: 0.25rem;}
 
 
 @media all and (max-width: 320px){body{font-size: 12px;}}
