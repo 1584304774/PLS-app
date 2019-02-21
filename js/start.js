@@ -4,12 +4,12 @@ window.onload = function(){
 	var $img = $("img");
 	var op = 10;
 	//背景虚化
-	/*setInterval(function(){
+	setInterval(function(){
 		$img.animate({opacity : (op--)/10},1000)
-		if(op/10 < 0.7){
+		if(op/10 < 0.6){
 			$img.animate({opacity : (op++)/10},500)
 		}
-	},1000);*/
+	},1000);
 	$register.on("click",function(){
 		location.href = "register.html";
 	})
