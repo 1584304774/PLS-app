@@ -12,4 +12,7 @@ window.onload = function(){
 	function HtmlVal(index,obj){
 		return $("span").eq(index).html(obj);
 	}
+	$("h2:last").on("click",function(){
+		location.href = "index.html";
+	})
 }

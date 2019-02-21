@@ -5,7 +5,7 @@ window.onload = function(){
 		$s1 = $("#s1"),
 		$s2 = $("#s2"),
 		$s3 = $("#s3");
-	////将string类型转为object类型,转为object类型后可以直接获取里面的键
+	//将string类型转为object类型,转为object类型后可以直接获取里面的键
 	var str = getCookie("infor");
 	if(str != ""){//先取出cookie,如果存在则执行下面代码
 		var arr = JSON.parse(str);
