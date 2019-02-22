@@ -7,6 +7,7 @@ html{font-size: 26.67vw;}
 #personal h2,h3{color: #fff;font-size: 0.2rem;margin-top: 0.2rem;}
 #personal h2:nth-child(1){font-size: 0.28rem;font-weight: 900;}
 #personal h3{margin-top: 0.4rem;}
+#personal a{color: #fff;text-decoration: underline;float: right;margin-top: 0.25rem;font-size: 0.2rem;}
 
 /*header*/
 header{height: 0.44rem;background: #12b7f5;display: flex;justify-content: space-between;align-items: center;padding: 0 0.3rem;}

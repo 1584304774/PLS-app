@@ -7,7 +7,7 @@ window.onload = function(){
 		$img.animate({opacity : 0.4},2000,function(){
 			$img.animate({opacity : 0.8},2000)
 		})
-	},5000);
+	},4000);
 	$register.on("click",function(){
 		location.href = "register.html";
 	})
