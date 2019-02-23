@@ -60,10 +60,16 @@ window.onload = function(){
 		$plusSmall.slideDown(1000);
 		return false;//阻止事件冒泡
 	})
-	//点击其他地方使加号显示的部分隐藏，也可使个人信息栏隐藏
+	
+	
+	//点击屏幕事件
 	$(document).on("click",function(){
+		//点击其他地方使加号显示的部分隐藏
 		$plusSmall.slideUp(1000);
-		$("#personal").animate({left : "-2.63rem"},1000)
+		//点击其他地方使个人信息栏隐藏
+		$("#personal").animate({left : "-2.63rem"},1000);
+		//点击其他部分隐藏表情栏
+		$(".face").slideUp(1000);
 	})
 	//选项卡功能,点击footer中的div显示相应的section
 	$("footer div").click(function(){
@@ -119,12 +125,46 @@ window.onload = function(){
 	})
 	
 	//社交圈版块内容
+	//点击表情显示表情栏，点击其他部分隐藏
+	$(".bq").click(function(){
+		$(".face").slideDown(1000);
+		return false;
+	})
+	//点击某个表情，克隆到message中
+	$(".face li").click(function(){
+		var bq = $(this).find("img").clone();
+		bq.css({"width":"0.3rem","height":"0.3rem","display":"inline-block"});
+		bq.appendTo(".message");
+	})
+	//点击发布内容
+	$(".qqsubmit").click(function(){
+		var txt = $(".message").html();
+		$(".msgCon").prepend(  `<div class='msgBox'>
+									<dl>
+										<dt><img src='images/background/background11.jpeg'/></dt>
+										<dd></dd>
+									</dl>
+									<div class='msgTxt'>${txt}</div>
+								</div>`);
+		//获取用户名，显示在发表的内容中
+		var str = getCookie("infor");
+		if(str != ""){
+			var arr = JSON.parse(str);
+			$(".msgBox").find("dd").html(arr.uname);
+		}
+	})
+	
+	
 	
 	
 	//休闲养生版块
-	//搜索框聚焦后放大镜图标隐藏
+	//搜索框聚焦后放大镜图标隐藏,失去焦点后显示,且清空搜索框内容
 	$("#search").find(":text").focus(function(){
 		$("#search").find("i").css("display","none");
+	})
+	$("#search").find(":text").blur(function(){
+		$("#search").find("i").css("display","block");
+		$("#search").find(":text").val("");
 	})
 	//通过ajax获取index1.json中的轮播图src属性值
 	var deff = $.ajax({//请求服务器传递过来的数据

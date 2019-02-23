@@ -3,16 +3,18 @@
 html{font-size: 26.67vw;}
 
 /*隐藏的个人信息版块*/
-#personal,#setup{width: 70%;height: 100%;background: #000;position: absolute;left: -2.63rem;top: 0;z-index: 3;opacity: 0.5;color: #fff;}
+#personal,#setup{width: 70%;height: 100%;position: absolute;left: -2.63rem;top: 0;color: #40E0D0;}
+#personal{background: url(../images/background/personal.jpg);background-position-x: -1rem;background-size: cover;z-index: 20;}
+#setup{background: url(../images/background/background17.jpg);background-position-x: -2.5rem;background-size: cover;z-index: 22;}
 #personal h2,h3{font-size: 0.2rem;margin-top: 0.2rem;}
 #personal h2:nth-child(1){font-size: 0.28rem;font-weight: 900;}
-#personal h3{margin-top: 0.4rem;}
+#personal h3{margin-top: 0.4rem;color: #fff;}
 #personal a{color: #fff;text-decoration: underline;float: right;margin-top: 0.25rem;font-size: 0.2rem;}
 #personal i{font-size: 0.3rem;position: absolute;bottom: 0.2rem;left: 0.2rem;}
 #setup label,input,h2{font-size: 0.2rem;}
 #setup p {margin-top: 0.2rem;}
 #setup h4{font-size: 0.28rem;}
-#setup h2{margin-left: 35%;margin-top: 0.3rem;}
+#setup h2{margin-left: 35%;margin-top: 0.3rem;color: #f00;}
 
 
 
@@ -26,10 +28,13 @@ header h2{font-size: 0.2rem;}
 #plusSmall{width: 0.6rem;height: 0.8rem;position: absolute;left: -0.45rem;top: 0.3rem;background: #DCDCDC;box-shadow: 2px 2px 2px 2px #666;display: none;z-index: 13;}
 #plusSmall h4{font-size: 0.15rem;padding-bottom: 0.1rem;}
 
+
 /*tab*/
 #tab{flex: 1;overflow: auto;position: relative;}
-section{width: 100%;height: 93%;position: absolute;left: 0;top: 0;display: flex;flex-direction: column;}
+section{width: 100%;overflow: auto;position: absolute;left: 0;top: 0;display: flex;flex-direction: column;}
 .active{color: #00f;}
+
+/*banner*/
 .banner{width: 100%;height: 1.8rem;border: 1px solid #ccc;position: relative;overflow: auto;}
 .banner ul{width: 1000%;height: 1.8rem;position: absolute;left: 0;top: 0;}
 .banner ul li{float: left;width: 3.75rem;}
@@ -37,16 +42,36 @@ section{width: 100%;height: 93%;position: absolute;left: 0;top: 0;display: flex;
 .banner ol{position: absolute;bottom: 0.05rem;left:35%;}
 .banner ol li{float: left;width: 0.2rem;height: 0.2rem;transform: rotate(45deg);margin-right: 0.1rem;border: 2px solid #FFD700;}
 .banner ol li.current{background: #FFD700;}
+
+/*search*/
 #search{height: 0.44rem;background: #fff;display: flex;justify-content: center;align-items: center;}
 #search #searchbox{width: 3.6rem;height: 0.3rem;position: relative;}
 #search #searchbox i{position: absolute;left: 40%;top: 30%;}
 #search #searchbox input{width: 100%;height: 100%;border-radius: 0.05rem;background: #eeeff3;text-align: center;}
-#qq{}
+
+/*qq*/
+#qq{width: 2.5rem;height: 1.3rem;background: #fff;border-radius: 0.1rem;margin:5% auto;display: flex;flex-direction: column;justify-content: space-between;align-items: center;}
+#qq p {font-size: 0.15rem;color: #666;font-family: "微软雅黑";line-height: 0.3rem;}
+#qq .message{width: 2.3rem;height: 0.6rem;border: 1px solid #000;font-size: 0.2rem;overflow: auto;outline: none;}
+#qq .but{width: 2.3rem;height: 0.3rem;position: relative;}
+#qq .but .bq{width: 0.3rem;height: 0.3rem;float: left;}
+#qq .but .qqsubmit{width: 0.6rem;height: 0.3rem;background: #ff8140;display: block;float: right;line-height: 0.3rem;text-align: center;border-radius: 0.05rem;font-family: "微软雅黑";font-size: 0.2rem;}
+#qq .but .face{width: 1.4rem;height: 2rem;background: #fff;position: absolute;top: 0.2rem;left: 0.2rem;padding: 0.02rem;border: 1px solid #ccc;box-shadow: 3px 3px 4px #666;display: none;}
+#qq .but .face ul li{float: left;margin: 0.015rem;}
+#qq .but .face ul li img{width: 0.3rem;height: 0.3rem;}
+.msgCon{width: 3rem;height: 1.5rem;margin: 0 auto 5%;}
+.msgCon .msgBox{padding: 0.08rem;background: #fff;margin-top: 0.2rem;}
+.msgCon .msgBox dl{border-bottom: 1px dotted #ccc;height: 0.6rem;}
+.msgCon .msgBox dl dt{width: 0.6rem;height: 0.8rem;float: left;}
+.msgCon .msgBox dl dt img{width: 100%;height: 100%;border-radius: 50%;}
+.msgCon .msgBox dl dd{font-size: 0.2rem;font-family: "微软雅黑";}
+.msgCon .msgBox .msgTxt{font-size: 0.2rem;margin-top: 0.2rem;line-height: 0.2rem;}
+
 
 
 
 /*footer*/
-footer{height: 0.5rem;background: #fff;width: 100%;position: fixed;bottom: 0;z-index: 2;}
+footer{height: 0.5rem;background: #12b7f5;width: 100%;position: fixed;bottom: 0;z-index: 15;}
 footer div{margin-left: 0.4rem;float: left;display: flex;flex-direction: column;justify-content: center;align-items: center;}
 footer div i{font-size: 30px!important;}
 
