@@ -9,10 +9,11 @@
 		<link rel="stylesheet" type="text/css" href="iconfont1/iconfont.css"/>
 		<link rel="stylesheet" type="text/css" href="iconfont2/iconfont.css"/>
 		<link rel="stylesheet" type="text/css" href="iconfont4/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="iconfont5/iconfont.css"/>
 	</head>
 	<body>
 		<!--隐藏的个人信息版块-->
-		<div id="personal">
+		<div id="personal" style="z-index: 14;">
 			<h2>您的个人信息如下：</h2>
 			<h2>昵称：<span></span></h2>
 			<h2>手机号：<span></span></h2>
@@ -27,7 +28,7 @@
 			<p><i class="iconfont icon-shezhi2"></i></p>
 		</div>
 		<!--隐藏的设置页面-->
-		<div id="setup">
+		<div id="setup" style="z-index: 15;">
 			<p>
 				<h4>您的个人信息如下：</h4>
 			</p>
@@ -86,49 +87,66 @@
 		<!--section-->
 		<div id="tab">
 			<!--社交圈版块-->
-			<section style="background: #f00;z-index: 1;">
-				<div class="banner">
-					<ul>
-						<a href="javascript:;">
-							<li style="z-index: 5;">
-								<img src="images/xiuxian1.jpg" alt="xiuxian1" />
-							</li>
-						</a>
-						<a href="javascript:;">
-							<li style="z-index: 4;">
-								<img src="images/xiuxian2.jpg" alt="xiuxian2" />
-							</li>
-						</a>
-						<a href="javascript:;">
-							<li style="z-index: 3;">
-								<img src="images/xiuxian3.jpg" alt="xiuxian3" />
-							</li>
-						</a>
-						<a href="javascript:;">
-							<li style="z-index: 2;">
-								<img src="images/xiuxian4.jpg" alt="xiuxian4" />
-							</li>
-						</a>
-						<a href="javascript:;">
-							<li style="z-index: 1;">
-								<img src="images/xiuxian5.jpg" alt="xiuxian5" />
-							</li>
-						</a>
-					</ul>
-					<ol style="z-index: 10;">
-						<li class="current"></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ol>
-				</div>
+			<section style="background: #f00;z-index: 11;">
+				<article>
+					<div id="qq">
+						<!--<p>记录今天的有趣事~~</p>-->
+					</div>
+				</article>
 			</section>
 			
 			<!--休闲养生版块-->
 			<section style="background: #ff0;">
 				<article>
-					
+					<!--搜索框-->
+					<div id="search">
+						<div id="searchbox">
+							<i class="iconfont icon-fangdajing"></i>
+							<input type="text" placeholder="搜索"/>
+						</div>
+					</div>
+					<!--无缝轮播图-->
+					<div class="banner" id="banner">
+						<ul id="bigImg">
+							<li>
+								<a href="javascript:;">
+									<img src="" alt="" />
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;">
+									<img src="" alt="" />
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;">
+									<img src="" alt="" />
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;">
+									<img src="" alt="" />
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;">
+									<img src="" alt="" />
+								</a>
+							</li>
+							<li>
+								<a href="javascript:;">
+									<img src="" alt="" />
+								</a>
+							</li>
+						</ul>
+						<ol style="z-index: 10;" id="smallImg">
+							<li class="current"></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ol>
+					</div>
 				</article>
 			</section>
 			
@@ -172,3 +190,4 @@
 <script src="js/common.js"></script>
 <script src="js/jquery-1.11.1.js"></script>
 <script src="js/cookie.js"></script>
+<script src="js/sport5.js"></script>

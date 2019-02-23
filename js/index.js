@@ -17,6 +17,10 @@ window.onload = function(){
 	function HtmlGet(index){
 		return $("#setup").find("input").eq(index).val()
 	}
+	//获取index1.json中的轮播图img的src属性值
+	function GetSrc(index,obj){
+		$("#bigImg").find("img").eq(index).attr("src","images/xiuxian/" + obj);
+	}
 	//点击头像显示个人注册信息
 	$portrait.click(function(){
 		var str = getCookie("infor");
@@ -116,29 +120,68 @@ window.onload = function(){
 	
 	//社交圈版块内容
 	
-	//淡入淡出轮播图
-	$(function(){//自执行函数
-		var timer = setInterval(auto,3000);
-		var index = 0;
-		function auto(){
-			index++;
-			if(index == $(".banner").find("ol li").size()){
-				index = 0;	
-			}
-			//当前显示的ol中的li高亮，其他的不高亮
-			$(".banner").find("ol li").eq(index).addClass("current").siblings().removeClass("current");
-			//当前的图片显示，其他的隐藏
-			$(".banner").find("ul a").eq(index).fadeIn(3000).siblings().fadeOut(3000);
+	
+	//休闲养生版块
+	//搜索框聚焦后放大镜图标隐藏
+	$("#search").find(":text").focus(function(){
+		$("#search").find("i").css("display","none");
+	})
+	//通过ajax获取index1.json中的轮播图src属性值
+	var deff = $.ajax({//请求服务器传递过来的数据
+		type:"get",//请求数据方式
+		url:"json/index1.json",//请求路径
+		async:true//表示异步
+	});
+	deff.done(function(msg){//通过done方法获取服务器的数据，deff为deffered对象
+		GetSrc(0,msg[0].src);
+		GetSrc(1,msg[1].src);
+		GetSrc(2,msg[2].src);
+		GetSrc(3,msg[3].src);
+		GetSrc(4,msg[4].src);
+		GetSrc(5,msg[0].src);//第六张图片时第一张图片
+	})
+	
+	//无缝轮播图(原生js实现)
+	var index = 0;
+	var banner = $id("banner");
+	var ul = $id("bigImg");
+	var list = $id("smallImg").children;
+	setInterval(auto,3000);
+	function auto(){
+		index++;//下标自增1
+		for(var i = 0;i < list.length;i++){
+			//排他思想：先将所有的类名清空，只有当前下标的类名才为current
+			list[i].className = "";
 		}
-		//小图标自动旋转
-		var deg = 0;
-		setInterval(function(){
-			$(".banner").find("ol li").css("transform","rotate(" + deg++ + "deg)");
+		//边界处理，当下标为5时，图片显示的是第六张图片，实际上是第一张图片（HTML结构），所以当出现下标溢出时，应该使下标指向第二张图片（index为1），才能起到无缝轮播的效果
+		if(index == 6){
+			index = 1;
+			ul.style.left = 0;
+		}
+		//下标值最大只有4，所以当index为5时需要重置为0，才能起到无缝轮播的效果
+		//将当前下标的类名加上current
+		list[index == 5 ? 0 : index].className = "current";
+		//调用运动函数，ul向左移动 的距离为一张图片的宽度*当前的下标值
+		startMove(ul,{left : -index*ul.children[0].offsetWidth});
+		
+	}
+	//每个小按钮自动旋转
+	var deg = 45;
+	setInterval(function(){
+		deg++;
+		for(var i = 0;i < list.length;i++){
 			if(deg == 360){
 				deg = 0;
 			}
-		},100);
-	});
+			list[i].style.transform = "rotate(" + deg + "deg)";
+		}
+	},100)
 	
+		
+	
+	//缓压版块
+	
+	
+	//上班模式版块
 }
 
