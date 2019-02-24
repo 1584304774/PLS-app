@@ -1,0 +1,116 @@
+@charset "utf-8";
+html {
+	font-size: 26.67vw;
+}
+
+img {
+	width: 100%;
+	height: 100%;
+	opacity: 0.5;
+}
+
+form {
+	position: absolute;
+}
+
+form p {
+	margin-bottom: 0.4rem;
+}
+
+form p label {
+	font-size: 0.2rem;
+}
+
+form p i {
+	font-size: 0.3rem!important;
+}
+
+form p input {
+	width: 1.7rem;
+	height: 0.3rem;
+	font-size: 0.2rem;
+}
+
+#male,
+#female {
+	width: 0.18rem;
+	height: 0.18rem;
+	margin-left: 0.2rem;
+}
+
+form h2 {
+	font-size: 0.3rem;
+	margin: 0.4rem;
+}
+
+form p span {
+	font-size: 0.25rem;
+}
+
+#phone,
+#uemail {
+	margin-left: 0.2rem;
+}
+
+#btn {
+	width: 1rem;
+	font-size: 0.2rem;
+	margin-left: 30%;
+}
+
+#information {
+	width: 3rem;
+	height: 3rem;
+	background: #DCDCDC;
+	position: fixed;
+	left: 10%;
+	top: 25%;
+	display: none;
+}
+
+#information h2 {
+	font-size: 0.3rem;
+	margin: 0.4rem;
+}
+
+#information #back {
+	font-size: 0.2rem;
+	margin: 0.5rem 1rem;
+	color: cornflowerblue;
+	text-decoration: underline;
+}
+
+#information #erorrinfor {
+	margin-left: 0.25rem;
+	margin-top: 1.3rem;
+}
+#information #rewrite{
+	text-decoration: underline;
+	color: red;
+	font-size: 0.2rem;
+	margin: 0.5rem 1rem;
+}
+.warn{
+	font-size: 0.3rem;
+}
+.warn span{
+	color: red;
+	text-decoration: underline;
+}
+@media all and (max-width: 320px) {
+	body {
+		font-size: 12px;
+	}
+}
+
+@media all and (min-width: 321px) and (max-width: 375px) {
+	body {
+		font-size: 14px;
+	}
+}
+
+@media all and (min-width: 376px) {
+	body {
+		font-size: 16px;
+	}
+}

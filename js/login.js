@@ -40,8 +40,8 @@ window.onload = function(){
 		if(flagName && flagPwd){
 			location.href = "index.html";
 		}else{
-			$s3.html("登录失败");
+			//若用户名有错误或者是密码有错误，则登录失败，提示有错误，让用户检查，用户可选择“忘记密码”选项对密码进行修改
+			$s3.html("用户名或密码错误!");
 		}
 	})
-	
 }

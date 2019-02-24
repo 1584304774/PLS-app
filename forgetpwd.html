@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<title>forgetpwd</title>
+		<link rel="stylesheet" type="text/css" href="css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="css/forgetpwd.css"/>
+		<link rel="stylesheet" type="text/css" href="iconfont3/iconfont.css"/>
+	</head>
+	<body>
+		<img src="images/forgetpwd.jpg" alt="" />
+		<form>
+			<h2>请填写注册过的信息~</h2>
+			<p>
+				<i class="iconfont icon-shouji"></i>
+				<label for="phone">手机号：</label>
+				<input type="text" id="phone"/>
+				<span id="s1"></span>
+			</p>
+			<p>
+				<i class="iconfont icon-youxiang"></i>
+				<label for="uemail">邮箱号：</label>
+				<input type="text" id="uemail"/>
+				<span id="s2"></span>
+			</p>
+			<p>
+				<i class="iconfont icon-xingbie"></i>
+				<label>性别：</label>
+				<input type="radio" name="sex" id="male" value="男"/><label for="male">男</label>
+				<input type="radio" name="sex" id="female" value="女"/><label for="female">女</label>
+			</p>
+			<p>
+				<i class="iconfont icon-shengriliwu"></i>
+				<label for="birth">生辰八字：</label>
+				<input type="text" id="birth"/>
+				<span id="s3"></span>
+			</p>
+			<p>
+				<input type="button" id="btn" value="查看密码"/>
+			</p>
+		</form>
+		<div id="information">
+			<h2 id="uname">昵称：<span></span></h2>
+			<h2 id="pwd">密码：<span></span></h2>
+			<div id="back">去登录</div>
+			<h2 id="erorrinfor"></h2>
+			<h2 id="rewrite">重新填写</h2>
+		</div>
+	</body>
+</html>
+<script src="js/common.js"></script>
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/cookie.js"></script>
+<script src="js/forgetpwd.js"></script>

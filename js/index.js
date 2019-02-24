@@ -109,16 +109,19 @@ window.onload = function() {
 			HtmlVal(4, HtmlGet(4));
 			HtmlVal(5, HtmlGet(5));
 			//同时将修改后的内容保存到cookie中
-			var obj = {
-				uname: HtmlGet(0),
-				phone: HtmlGet(1),
-				uemail: HtmlGet(2),
-				pwd: HtmlGet(3),
-				sex: HtmlGet(4),
-				birth: HtmlGet(5)
+			//当点击“确定修改”时，若每条信息都为空，则不会将修改后的内容保存到cookie中
+			if( (HtmlGet(0) != "") && (HtmlGet(1) != "") && (HtmlGet(2) != "") && (HtmlGet(3) != "") && (HtmlGet(4) != "") && (HtmlGet(5) != "")){
+				var obj = {
+					uname: HtmlGet(0),
+					phone: HtmlGet(1),
+					uemail: HtmlGet(2),
+					pwd: HtmlGet(3),
+					sex: HtmlGet(4),
+					birth: HtmlGet(5)
+				}
+				obj = JSON.stringify(obj);
+				setCookie("infor", obj, 3);
 			}
-			obj = JSON.stringify(obj);
-			setCookie("infor", obj, 3);
 			//可编辑信息栏退出后个人信息栏显示且设置left为0
 			$("#personal").fadeIn().animate({
 				left: 0

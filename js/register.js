@@ -98,21 +98,35 @@ window.onload = function(){
 		}
 	})
 	$submit.on("click",function(){
-		if(flagName && flagPhone && flagEmail && flagPwd && flagSurePwd && flagBirth){
-			var obj = {
-				uname : $uname.val(),
-				phone : $phone.val(),
-				uemail : $uemail.val(),
-				pwd : $pwd.val(),
-				sex : $(":radio:checked").val(),
-				birth : $birth.val()
-			};
-			obj = JSON.stringify(obj);
-			setCookie("infor",obj,3);
-			location.href = "login.html";
+		//点击注册时，先要判断该用户是否已经注册过
+		var str = getCookie("infor");
+		if(str != ""){
+			var arr = JSON.parse(str);
+			if($uname.val() == arr.uname){
+				//如果已经注册过，则提示“该用户已经注册”，且经过2秒后跳到登录界面
+				$s6.html("该用户已经注册!");
+				setTimeout(function(){
+					location.href = "login.html";
+				},2000)
+				//同时不再执行下面存cookie的操作
+				return ;
+			}
 		}else{
-			$s6.html("所填信息有错误!");
+			if(flagName && flagPhone && flagEmail && flagPwd && flagSurePwd && flagBirth){
+				var obj = {
+					uname : $uname.val(),
+					phone : $phone.val(),
+					uemail : $uemail.val(),
+					pwd : $pwd.val(),
+					sex : $(":radio:checked").val(),
+					birth : $birth.val()
+				};
+				obj = JSON.stringify(obj);
+				setCookie("infor",obj,3);
+				location.href = "login.html";
+			}else{
+				$s6.html("所填信息有错误!");
+			}
 		}
 	})
-	
 }
