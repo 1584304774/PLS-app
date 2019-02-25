@@ -105,8 +105,10 @@ window.onload = function(){
 			if($uname.val() == arr.uname){
 				//如果已经注册过，则提示“该用户已经注册”，且经过2秒后跳到登录界面
 				$s6.html("该用户已经注册!");
-				setTimeout(function(){
+				var timer = setTimeout(function(){
 					location.href = "login.html";
+					//2秒后动作完成删除延时器，提高效率
+					clearTimeout(timer);
 				},2000)
 				//同时不再执行下面存cookie的操作
 				return ;

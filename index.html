@@ -32,7 +32,7 @@
 			<p><i class="iconfont icon-shezhi2"></i></p>
 		</div>
 		<!--隐藏的设置页面-->
-		<div id="setup">
+		<div id="setup" >
 			<p>
 				<h4>您的个人信息如下：</h4>
 			</p>
@@ -69,6 +69,10 @@
 			<p>
 				<h2>注销账号</h2>
 			</p>
+			<div id="unregistered">
+				<h3 style="margin-top: 1rem;">没有信息</h3>
+				<h3>请先去注册!</h3>
+			</div>
 		</div>
 
 		<!--header-->
@@ -242,9 +246,9 @@
 			<!--上班模式版块-->
 			<section style="background: url(images/background/background2.jpeg);height: 92%;background-position-x: -3rem;">
 				<article>
-
+					<button id="startwork">开始上班</button>
 				</article>
-			</section>
+			</section>		
 
 			<!--footer-->
 			<footer>
@@ -265,6 +269,17 @@
 					<em>上班模式</em>
 				</div>
 			</footer>
+		</div>
+		<!--点击“开始上班”按钮后弹出的蒙层-->
+		<div id="layer">
+			<div id="loginpwd">
+				<h2>输入登录密码以解锁该模式：</h2>
+				<p><input type="text" id="startpwd"/></p>
+				<p><button id="pwdbtn">确定</button></p>
+			</div>
+			<div id="mask">
+				<h3></h3>
+			</div>
 		</div>
 	</body>
 

@@ -3,7 +3,7 @@ window.onload = function() {
 	var $jiahao = $(".icon-jiahao");
 	var $plusSmall = $("#plusSmall");
 
-	//注册登录功能，包括增加账号、删除账号、修改注册信息、查看注册信息
+	//注册登录功能，包括增加账号、删除账号、修改注册信息、查看注册信息、对于注册密码和用户名的查看
 
 	//设置个人信息栏内容
 	function HtmlVal(index, obj) {
@@ -15,7 +15,7 @@ window.onload = function() {
 	}
 	//获取可编辑信息栏内容
 	function HtmlGet(index) {
-		return $("#setup").find("input").eq(index).val()
+		return $("#setup").find("input").eq(index).val();
 	}
 	//获取index1.json中的轮播图img的src属性值
 	function GetSrc(index, obj) {
@@ -33,12 +33,15 @@ window.onload = function() {
 			HtmlVal(4, arr.sex);
 			HtmlVal(5, arr.birth);
 		}
+		//个人信息栏显示
 		$("#personal").animate({
 			left: 0
 		}, 1000, function() {
+			//之后点击设置键入可编辑信息栏
 			$(".icon-shezhi2").click(function() {
 				var str = getCookie("infor");
 				if(str != "") {
+					//说明此时已经注册过,可进行信息的修改
 					var arr = JSON.parse(str);
 					HtmlSet(0, arr.uname);
 					HtmlSet(1, arr.phone);
@@ -46,15 +49,30 @@ window.onload = function() {
 					HtmlSet(3, arr.pwd);
 					HtmlSet(4, arr.sex);
 					HtmlSet(5, arr.birth);
+					//在个人信息栏出现后再点击设置出现可编辑设置栏
+					$("#setup").animate({
+						left: 0
+					}, 1000, function() {
+						//可编辑设置栏出现后个人信息栏隐藏
+						$("#personal").fadeOut();
+					});
+					return false;//阻止事件冒泡
+				}else{
+					//说明此时未注册,则弹出提示框“没有信息，请先去注册!”,2秒后跳转到注册页面
+					$("#setup").animate({left:0},1000,function(){
+						//可编辑设置栏出现后个人信息栏隐藏
+						$("#personal").fadeOut();
+						//提示框显示
+						$("#unregistered").fadeIn(1000);
+						//经过2秒后提示框消失，且跳转到注册页面
+						var timer = setTimeout(function(){
+							$("#unregistered").fadeOut(1000);
+							location.href = "register.html";
+							//清除延时器，提高效率
+							clearTimeout(timer);
+						},2000);
+					});
 				}
-				//在个人信息栏出现后再点击设置出现可编辑设置栏
-				$("#setup").animate({
-					left: 0
-				}, 1000, function() {
-					//可编辑设置栏出现后个人信息栏隐藏
-					$("#personal").fadeOut();
-				});
-				return false;
 			})
 		});
 		return false;
@@ -110,7 +128,7 @@ window.onload = function() {
 			HtmlVal(5, HtmlGet(5));
 			//同时将修改后的内容保存到cookie中
 			//当点击“确定修改”时，若每条信息都为空，则不会将修改后的内容保存到cookie中
-			if( (HtmlGet(0) != "") && (HtmlGet(1) != "") && (HtmlGet(2) != "") && (HtmlGet(3) != "") && (HtmlGet(4) != "") && (HtmlGet(5) != "")){
+			if((HtmlGet(0) != "") && (HtmlGet(1) != "") && (HtmlGet(2) != "") && (HtmlGet(3) != "") && (HtmlGet(4) != "") && (HtmlGet(5) != "")) {
 				var obj = {
 					uname: HtmlGet(0),
 					phone: HtmlGet(1),
@@ -139,6 +157,7 @@ window.onload = function() {
 	})
 
 	//社交圈版块内容
+	//将发布的内容保存在cookie中，刷新时可以使之前发布的内容在屏幕中显示
 	//点击表情显示表情栏，点击其他部分隐藏
 	$(".bq").click(function() {
 		$(".face").slideDown(1000);
@@ -162,7 +181,7 @@ window.onload = function() {
 	}
 	var nowtime = new Date();
 	$(".nowtime").html(nowtime.toLocaleString());
-	//点击发布内容
+	//点击发布内容,并将发布的内容存入cookie？？？
 	$(".qqsubmit").click(function() {
 		var txt = $(".message").html();
 		$(".msgCon").prepend(`<div class='msgBox'>
@@ -257,4 +276,69 @@ window.onload = function() {
 	//缓压版块
 
 	//上班模式版块
+	//点击“开始上班”按钮弹出蒙层覆盖整个屏幕
+	/*
+	已经注册过的前提下:
+		输入空字符时弹出提示框“请填写解锁密码”，2秒后提示框消失
+		输入正确密码时弹出提示框“欢迎回来”，2秒后蒙层和提示框消失
+		输入错误密码时弹出提示框“密码错误”，2秒后提示框消失
+	未注册的前提下：
+		无论什么情况下，没有注册过的用户在输入任何值时点击确定按钮都会弹出提示框“注册信息已过期”，并在2秒后转到转到注册页面
+	*/
+	$("#startwork").click(function() {
+		$("#layer").fadeIn(1000);
+		$("#pwdbtn").click(function() {
+			var str = getCookie("infor");
+			if(str != "") {
+				//说明此时该用户已经注册过
+				var arr = JSON.parse(str);
+				//密码正确
+				if($("#startpwd").val() == arr.pwd) {
+					$("#mask").fadeIn(1000);
+					$("#mask").find("h3").html("欢迎回来!");
+					$("#mask").find("h3").css("color", "blue");
+					var timer = setTimeout(function() {
+						$("#mask").fadeOut(1000);
+						$("#layer").fadeOut(1000);
+						//同时将输入框的内容清空
+						$("#startpwd").val("");
+						//2秒后完成所有动作之后删除延时器，提高效率
+						clearTimeout(timer);
+					}, 2000);
+					//没有填写密码
+				} else if($("#startpwd").val() == "") {
+					$("#mask").fadeIn(1000);
+					$("#mask").find("h3").html("请填写解锁密码!");
+					$("#mask").find("h3").css("color", "red");
+					var timer1 = setTimeout(function() {
+						$("#mask").fadeOut(1000);
+						clearTimeout(timer1);
+					}, 2000);
+					//密码错误
+				} else {
+					$("#mask").fadeIn(1000);
+					$("#mask").find("h3").html("密码错误!");
+					$("#mask").find("h3").css("color", "red");
+					var timer2 = setTimeout(function() {
+						$("#mask").fadeOut(1000);
+						//同时将输入框的内容清空
+						$("#startpwd").val("");
+						clearTimeout(timer2);
+					}, 2000);
+				}
+			} else {
+				//说明此时该用户没有注册过
+				$("#mask").fadeIn(1000);
+				$("#mask").find("h3").html("注册信息过期!");
+				$("#mask").find("h3").css("color", "red");
+				var timer3 = setTimeout(function() {
+					$("#mask").fadeOut(1000);
+					$("#layer").fadeOut(1000);
+					$("#startpwd").val("");
+					location.href = "register.html";
+					clearTimeout(timer3);
+				}, 2000);
+			}
+		})
+	})
 }
