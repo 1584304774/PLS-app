@@ -417,6 +417,34 @@ section {
 	margin-left: 15%;
 }
 
+
+
+
+/*休闲养生模式*/
+#news1{
+	width: 80%;
+	height: 30%;
+	background: #000;
+	position: absolute;
+	margin:10% 10%;
+}
+#news2{
+	width: 80%;
+	height: 30%;
+	background: #fff;
+	position: absolute;
+	margin-left:10% ;
+	margin-top: 60%;
+}
+#news3{
+	width: 80%;
+	height: 30%;
+	background: #f00;
+	position: absolute;
+	margin-left:10% ;
+	margin-top: 110%;
+}
+
 /*上班模式*/
 #startwork{
 	width: 1rem;

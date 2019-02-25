@@ -46,7 +46,9 @@ form h2 {
 form p span {
 	font-size: 0.25rem;
 }
-
+#uname{
+	margin-left: 0.4rem;
+}
 #phone,
 #uemail {
 	margin-left: 0.2rem;
@@ -88,7 +90,7 @@ form p span {
 	text-decoration: underline;
 	color: red;
 	font-size: 0.2rem;
-	margin: 0.5rem 1rem;
+	margin: 0.5rem 0.8rem;
 }
 .warn{
 	font-size: 0.3rem;
