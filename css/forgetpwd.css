@@ -46,9 +46,11 @@ form h2 {
 form p span {
 	font-size: 0.25rem;
 }
-#uname{
+
+#uname {
 	margin-left: 0.4rem;
 }
+
 #phone,
 #uemail {
 	margin-left: 0.2rem;
@@ -72,7 +74,8 @@ form p span {
 
 #information h2 {
 	font-size: 0.3rem;
-	margin: 0.4rem;
+	margin-top: 0.4rem;
+	margin-left: 0;
 }
 
 #information #back {
@@ -86,19 +89,23 @@ form p span {
 	margin-left: 0.25rem;
 	margin-top: 1.3rem;
 }
-#information #rewrite{
+
+#information #rewrite {
 	text-decoration: underline;
 	color: red;
 	font-size: 0.2rem;
 	margin: 0.5rem 0.8rem;
 }
-.warn{
+
+.warn {
 	font-size: 0.3rem;
 }
-.warn span{
+
+.warn span {
 	color: red;
 	text-decoration: underline;
 }
+
 @media all and (max-width: 320px) {
 	body {
 		font-size: 12px;

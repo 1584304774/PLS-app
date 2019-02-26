@@ -20,14 +20,14 @@ html {
 	background: url(../images/background/personal.jpg);
 	background-position-x: -1rem;
 	background-size: cover;
-	z-index: 20;
+	z-index: 32;
 }
 
 #setup {
 	background: url(../images/background/background17.jpg);
 	background-position-x: -2.5rem;
 	background-size: cover;
-	z-index: 22;
+	z-index: 33;
 }
 
 #personal h2,
@@ -80,21 +80,25 @@ h2 {
 	margin-top: 0.3rem;
 	color: #f00;
 }
-#unregistered{
-	 position: absolute;
-	 left: 3%;
-	 bottom: 15%;
-	 z-index: 25;
-	 width: 90%;
-	 height: 50%;
-	 background: #666;
-	 display: none;
+
+#unregistered {
+	position: absolute;
+	left: 3%;
+	bottom: 15%;
+	z-index: 25;
+	width: 90%;
+	height: 50%;
+	background: #666;
+	display: none;
 }
-#unregistered h3{
+
+#unregistered h3 {
 	font-size: 0.3rem;
 	color: red;
 	text-align: center;
 }
+
+
 /*header*/
 
 header {
@@ -104,6 +108,7 @@ header {
 	justify-content: space-between;
 	align-items: center;
 	padding: 0 0.3rem;
+	z-index: 12;
 }
 
 header h2 {
@@ -138,7 +143,6 @@ header h2 {
 	background: #DCDCDC;
 	box-shadow: 2px 2px 2px 2px #666;
 	display: none;
-	z-index: 13;
 }
 
 #plusSmall h4 {
@@ -418,35 +422,110 @@ section {
 }
 
 
-
-
 /*休闲养生模式*/
-#news1{
-	width: 80%;
-	height: 30%;
-	background: #000;
+
+#news {
+	width: 100%;
+	height: 115%;
 	position: absolute;
-	margin:10% 10%;
 }
-#news2{
-	width: 80%;
-	height: 30%;
+
+.newscont {
+	width: 70%;
+	height: 1.5rem;
+	margin: 15%;
+	color: #008B8B;
+	font-size: 0.35rem;
+	text-align: center;
+}
+
+#newslayer {
+	width: 100%;
+	height: 80%;
+	position: fixed;
+	left: 0;
+	top: 10%;
+	z-index: 10;
+	display: none;
+	font-size: 0.25rem;
+	color: #000;
+	text-indent: 0.4rem;
+}
+
+#newslayer .newstxt {
+	padding-top: 0.3rem;
+}
+
+#newslayer .newstitle {
+	font-size: 0.35rem;
+	color: red;
+	text-indent: 0;
+	text-align: center;
+}
+
+
+/*缓压模式*/
+
+.wrap {
+	width: 3.5rem;
+	height: 2.5rem;
+	position: absolute;
+	left: 0.15rem;
 	background: #fff;
-	position: absolute;
-	margin-left:10% ;
-	margin-top: 60%;
 }
-#news3{
-	width: 80%;
-	height: 30%;
-	background: #f00;
-	position: absolute;
-	margin-left:10% ;
-	margin-top: 110%;
+
+.wrap h2 {
+	padding: 0.2rem;
+	padding-left: 0;
+	margin-left: 0.2rem;
+	border-bottom: 1px dotted #666;
+	font-size: 0.2rem;
 }
+
+.wrap h2 span {
+	color: orange;
+	margin-right: 0.1rem;
+}
+
+.wraptxt {
+	font-size: 0.2rem;
+	text-indent: 0.2rem;
+}
+
+#wraplayer {
+	width: 100%;
+	height: 320%;
+	background: #fff;
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 0;
+	font-size: 0.25rem;
+	z-index: 20;
+	text-indent: 0.2rem;
+}
+
+.wrap1 {
+	top: 0.15rem;
+}
+
+.wrap2 {
+	top: 2.8rem;
+}
+
+.wrap3 {
+	top: 5.45rem;
+}
+
+.wrap4 {
+	top: 8.15rem;
+	margin-bottom: 0.2rem;
+}
+
 
 /*上班模式*/
-#startwork{
+
+#startwork {
 	width: 1rem;
 	height: 0.5rem;
 	font-size: 0.2rem;
@@ -456,7 +535,8 @@ section {
 	opacity: 0.7;
 	position: absolute;
 }
-#layer{
+
+#layer {
 	width: 100%;
 	height: 100%;
 	background: #ccc;
@@ -466,27 +546,32 @@ section {
 	display: none;
 	z-index: 20;
 }
-#loginpwd{
+
+#loginpwd {
 	margin-left: 0.2rem;
 	margin-top: 50%;
 }
-#loginpwd h2{
+
+#loginpwd h2 {
 	font-size: 0.25rem;
 	margin-bottom: 0.4rem;
 }
-#loginpwd input{
+
+#loginpwd input {
 	width: 3rem;
 	height: 0.3rem;
 	font-size: 0.2rem;
 	margin-bottom: 0.4rem;
 }
-#loginpwd button{
+
+#loginpwd button {
 	width: 0.6rem;
 	height: 0.3rem;
 	font-size: 0.2rem;
 	margin-left: 30%;
 }
-#mask{
+
+#mask {
 	width: 2rem;
 	height: 2rem;
 	background: #666;
@@ -495,11 +580,14 @@ section {
 	top: 30%;
 	display: none;
 }
-#mask h3{
+
+#mask h3 {
 	font-size: 0.25rem;
 	text-align: center;
 	margin-top: 40%;
 }
+
+
 /*footer*/
 
 footer {

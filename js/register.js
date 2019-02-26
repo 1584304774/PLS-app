@@ -109,7 +109,7 @@ window.onload = function() {
 				pwd: $pwd.val(),
 				sex: $(":radio:checked").val(),
 				birth: $birth.val(),
-				sid : 1
+				sid: 1
 			};
 			var flag = true; //假设为true时，可以向数组中push一个对象
 			//先取出cookie中的所有用户信息，判断当前注册的用户信息是否在cookie中存在，如果存在则提示该用户已经注册
@@ -125,7 +125,7 @@ window.onload = function() {
 					if(cookieInfo[i].uname == json.uname) {
 						flag = false;
 						break; //只要寻找到一个存在的便可以结束遍历
-					}else{
+					} else {
 						//若当前注册的用户信息不存在，说明可以存入cookie中，则将sid+1，之后主页可根据sid来判断当前登录的用户是谁
 						json.sid++;
 					}

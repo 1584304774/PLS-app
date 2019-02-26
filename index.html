@@ -32,7 +32,7 @@
 			<p><i class="iconfont icon-shezhi2"></i></p>
 		</div>
 		<!--隐藏的设置页面-->
-		<div id="setup" >
+		<div id="setup">
 			<p>
 				<h4>您的个人信息如下：</h4>
 			</p>
@@ -83,7 +83,7 @@
 			<h2>社交圈</h2>
 			<div id="plus">
 				<i class="iconfont icon-jiahao"></i>
-				<div id="plusSmall">
+				<div id="plusSmall" style="z-index: 30;">
 					<h4>百度一下</h4>
 					<h4>腾讯新闻</h4>
 					<h4>网易资讯</h4>
@@ -94,7 +94,7 @@
 		<!--section-->
 		<div id="tab">
 			<!--社交圈版块-->
-			<section style="background: url(images/background/background15.jpg);z-index: 11;height: 92%;">
+			<section style="background: url(images/background/background15.jpg);z-index:10;height: 92%;">
 				<article>
 					<div class="showBox">
 						<dl>
@@ -146,7 +146,7 @@
 						</div>
 					</div>
 					<div class="msgCon">
-						<!--<div class="msgBox">
+						<div class="msgBox">
 							<dl>
 								<dt><img src="images/background/background11.jpeg"/></dt>
 								<dd></dd>
@@ -169,10 +169,8 @@
 							</dl>
 							<div class="msgTxt">今天有个好心情~~</div>
 							<div class="nowtime"></div>
-						</div>-->
-						
-						
-						
+						</div>
+
 						<!--<div class="msgBox">
 							<dl>
 								<dt><img src="images/background/background11.jpeg"/></dt>
@@ -228,7 +226,7 @@
 								</a>
 							</li>
 						</ul>
-						<ol style="z-index: 10;" id="smallImg">
+						<ol style="z-index: 9;" id="smallImg">
 							<li class="current"></li>
 							<li></li>
 							<li></li>
@@ -236,24 +234,55 @@
 							<li></li>
 						</ol>
 					</div>
-					
-					
-					<div id="news1">
-						
+					<div id="news">
+						<div class="newscont newscont1" data-id="1">
+
+						</div>
+						<div class="newscont newscont2" data-id="2">
+
+						</div>
+						<div class="newscont newscont3" data-id="3">
+
+						</div>
 					</div>
-					<div id="news2">
-						
+					<div id="newslayer">
+						<h2 class="newstitle"></h2>
+						<div class="newstxt">
+
+						</div>
 					</div>
-					<div id="news3">
-						
-					</div>
+
 				</article>
 			</section>
 
 			<!--缓压版块-->
 			<section style="background: url(images/background/background16.jpg);height: 92%;background-size: cover;background-position-x: -1.8rem;">
-				<article>
-
+				<article id="artwrap">
+					
+					<div class="wrap wrap1" data-id="1">
+						<h2><span>|</span><em></em></h2>
+						<div class="wraptxt">
+							
+						</div>
+					</div>
+					<div class="wrap wrap2" data-id="2">
+						<h2><span>|</span><em></em></h2>
+						<div class="wraptxt">
+							
+						</div>
+					</div>
+					<div class="wrap wrap3" data-id="3">
+						<h2><span>|</span><em></em></h2>
+						<div class="wraptxt">
+							
+						</div>
+					</div>
+					<div class="wrap wrap4" data-id="4">
+						<h2><span>|</span><em></em></h2>
+						<div class="wraptxt">
+							
+						</div>
+					</div>
 				</article>
 			</section>
 
@@ -262,7 +291,7 @@
 				<article>
 					<button id="startwork">开始上班</button>
 				</article>
-			</section>		
+			</section>
 
 			<!--footer-->
 			<footer>
@@ -288,12 +317,16 @@
 		<div id="layer">
 			<div id="loginpwd">
 				<h2>输入登录密码以解锁该模式：</h2>
-				<p><input type="text" id="startpwd"/></p>
+				<p><input type="text" id="startpwd" /></p>
 				<p><button id="pwdbtn">确定</button></p>
 			</div>
 			<div id="mask">
 				<h3></h3>
 			</div>
+		</div>
+		<!--点击短文章弹出的蒙层-->
+		<div id="wraplayer">
+			
 		</div>
 	</body>
 

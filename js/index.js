@@ -30,6 +30,10 @@ window.onload = function() {
 		$(".face").slideUp(1000);
 		//点击其他地方隐藏显示出来的showinfo
 		$(".showBox").fadeOut(1000);
+		//点击其他地方隐藏新闻版块弹出来的蒙层
+		$("#newslayer").fadeOut(1000);
+		//点击其他地方隐藏短文章弹出来的蒙层
+		$("#wraplayer").fadeOut(1000);
 	})
 	//选项卡功能,点击footer中的div显示相应的section
 	$("footer div").click(function() {
@@ -149,10 +153,28 @@ window.onload = function() {
 					uemail: HtmlGet(2),
 					pwd: HtmlGet(3),
 					sex: HtmlGet(4),
-					birth: HtmlGet(5),
-					sid: sid
+					birth: HtmlGet(5)
 				}
-				//将当前用户的信息进行修改????
+				//将当前用户的信息进行修改
+				//先获取整个数组
+				var cookieInfo = getCookie("infor"); //取出来的是数组
+				//遍历每一个对象
+				for(var i = 0; i < cookieInfo.length; i++) {
+					//根据sid来找到当前是哪一个用户
+					if(sid == cookieInfo[i].sid) {
+						var index = i; //当前用户在数组中的下标
+						//将获取到的修改过后信息的值赋值给当前用户所对应的属性值
+						cookieInfo[index].uname = json.uname;
+						cookieInfo[index].phone = json.phone;
+						cookieInfo[index].uemail = json.uemail;
+						cookieInfo[index].pwd = json.pwd;
+						cookieInfo[index].sex = json.sex;
+						cookieInfo[index].birth = json.birth;
+						//最后再将整个数组进行赋值，便可实现覆盖
+						setCookie("infor", JSON.stringify(cookieInfo), 3);
+						break; //找到满足条件的用户便可结束循环，提高执行效率
+					}
+				}
 			}
 			//可编辑信息栏退出后个人信息栏显示且设置left为0
 			$("#personal").fadeIn().animate({
@@ -167,11 +189,31 @@ window.onload = function() {
 	//点击“注销账号”删除cookie，且回到start.html重新注册
 	$("#setup").find("h2").eq(2).click(function() {
 		//删除cookie???????
-		location.href = "start.html";
+		var str = location.href;
+		str = str.split("?")[1];
+		sid = str.split("=")[1];
+		var cookieInfo = getCookie("infor");
+		if(cookieInfo.length != 0) {
+			for(var i = 0; i < cookieInfo.length; i++) {
+				if(sid == cookieInfo[i].sid) {
+					var index = i;
+					cookieInfo[index].uname = "";
+					cookieInfo[index].phone = "";
+					cookieInfo[index].uemail = "";
+					cookieInfo[index].pwd = "";
+					cookieInfo[index].sex = "";
+					cookieInfo[index].birth = "";
+					cookieInfo[index].sid = "";
+					setCookie("infor", JSON.stringify(cookieInfo), 3);
+					location.href = "register.html";
+					break;
+				}
+			}
+		}
+		//location.href = "start.html";
 	})
 
 	//社交圈版块内容
-	//将发布的内容保存在cookie中，刷新时可以使之前发布的内容在屏幕中显示
 	//点击表情显示表情栏，点击其他部分隐藏
 	$(".bq").click(function() {
 		$(".face").slideDown(1000);
@@ -187,7 +229,29 @@ window.onload = function() {
 		});
 		bq.appendTo(".message");
 	})
-	//点击发布内容,并将发布的内容存入cookie?????
+	//之前发布的几条内容也要获取用户名和时间
+	var cookieInfo = getCookie("infor");
+	if(cookieInfo.length != 0) {
+		var str = location.href;
+		str = str.split("?")[1];
+		var sid = str.split("=")[1];
+		for(var i = 0; i < cookieInfo.length; i++) {
+			if(sid == cookieInfo[i].sid) {
+				var index = i;
+				$(".msgBox").find("dd").html(cookieInfo[index].uname);
+				var nowtime = new Date();
+				$(".nowtime").html(nowtime.toLocaleString());
+			}
+		}
+	}
+	//点击每个msgBox显示相应的内容
+	$(".msgCon").on("click", ".msgBox", function() {
+		$(".showBox").fadeIn(1000);
+		$(".showBox").find("dd").html($(this).find("dd").html());
+		$(".showBox").find(".showTxt").html($(this).find(".msgTxt").html());
+		$(".showBox").find(".showtime").html($(this).find(".nowtime").html());
+		return false;
+	});
 	$(".qqsubmit").click(function() {
 		var txt = $(".message").html();
 		$(".msgCon").prepend(`<div class='msgBox'>
@@ -213,17 +277,10 @@ window.onload = function() {
 				}
 			}
 		}
-		//点击每个msgBox显示相应的内容
-		$(".msgCon").on("click", ".msgBox", function() {
-			$(".showBox").fadeIn(1000);
-			$(".showBox").find("dd").html($(this).find("dd").html());
-			$(".showBox").find(".showTxt").html($(this).find(".msgTxt").html());
-			$(".showBox").find(".showtime").html($(this).find(".nowtime").html());
-			return false;
-		});
+
 	})
 
-	//休闲养生版块(利用ajax获取文章的内容？？？？？)
+	//休闲养生版块(利用ajax获取文章的内容)
 	//搜索框聚焦后放大镜图标隐藏,失去焦点后显示,且清空搜索框内容
 	$("#search").find(":text").focus(function() {
 		$("#search").find("i").css("display", "none");
@@ -285,18 +342,84 @@ window.onload = function() {
 		}
 	}, 100)
 
-	//缓压版块（利用ajax获取音乐和视频的内容??????）
+	//利用ajax将三个新闻版块的图片、标题、内容加载进来
+	var deff = $.ajax({
+		type: "get",
+		url: "json/news.json",
+		async: true
+	});
+	deff.done(function(msg) {
+		$(".newscont1").css("background", "url(images/news/" + msg[0].src + ")"); //以index.html为基准寻找路径
+		$(".newscont1").css("background-size", "cover");
+		$(".newscont2").css("background", "url(images/news/" + msg[1].src + ")"); //以index.html为基准寻找路径
+		$(".newscont2").css("background-size", "cover");
+		$(".newscont3").css("background", "url(images/news/" + msg[2].src + ")"); //以index.html为基准寻找路径
+		$(".newscont3").css("background-size", "cover");
+		//点击每一个新闻版块都会将新闻的内容显示出来(使用事件委托)
+		$("#news").on("click", ".newscont", function() {
+			$("#newslayer").fadeIn(1000);
+			var index = $(this).data("id") - 1; //利用自定义属性data-id来确定点击的新闻版块的下标,从而获取到相应的article值
+			$(".newstitle").html(msg[index].title)
+			$(".newstxt").html(msg[index].article);
+			var deff1 = $.ajax({
+				type: "get",
+				url: "json/notetag.json",
+				async: true
+			});
+			deff1.done(function(msg) {
+				//使用ajax将对应的图片加载
+				$("#newslayer").css("background", "url(images/notetag/" + msg[index].src + ")");
+				$("#newslayer").css("background-size", "cover");
+				$("#newslayer").css("background-position-x", "-0.2rem");
+			})
+			return false; //阻止事件冒泡
+		})
+	})
 
+	//缓压版块（利用ajax获取文章的内容）
+	//利用事件委托来实现点击不同的文章缩略图跳转到同一个页面，再通过ajax来获取所点击的缩略图的完整信息
+	$("#artwrap").on("click", ".wrap", function() {
+		$("#wraplayer").fadeIn(1000);
+		var deff = $.ajax({
+			type: "get",
+			url: "json/huanya.json",
+			async: true
+		});
+		//根据自定义属性data-id来确定点击的是哪一个短文章缩略图
+		var index = $(this).data("id") - 1;
+		deff.done(function(msg) {
+			$("#wraplayer").html(msg[index].article2);
+		})
+		return false; //阻止事件冒泡
+	})
+	//获取标题
+	var deff = $.ajax({
+		type: "get",
+		url: "json/huanya.json",
+		async: true
+	});
+	deff.done(function(msg) {
+		$(".wrap:eq(0)").find("em").html(msg[0].title);
+		$(".wrap:eq(1)").find("em").html(msg[1].title);
+		$(".wrap:eq(2)").find("em").html(msg[2].title);
+		$(".wrap:eq(3)").find("em").html(msg[3].title);
+		//获取标题下对应的缩略文章
+		$(".wrap:eq(0)").find(".wraptxt").html(msg[0].article1);
+		$(".wrap:eq(1)").find(".wraptxt").html(msg[1].article1);
+		$(".wrap:eq(2)").find(".wraptxt").html(msg[2].article1);
+		$(".wrap:eq(3)").find(".wraptxt").html(msg[3].article1);
+	})
+	//获取图片
+	var deff2 = $.ajax({
+		type: "get",
+		url: "json/notetag.json",
+		async: true
+	});
+	deff2.done(function(msg) {
+		$(".wrap").css("background", "url(images/notetag/" + msg[8].src + ")");
+	})
 	//上班模式版块
 	//点击“开始上班”按钮弹出蒙层覆盖整个屏幕
-	/*
-	已经注册过的前提下:
-		输入空字符时弹出提示框“请填写解锁密码”，2秒后提示框消失
-		输入正确密码时弹出提示框“欢迎回来”，2秒后蒙层和提示框消失
-		输入错误密码时弹出提示框“密码错误”，2秒后提示框消失
-	未注册的前提下：
-		无论什么情况下，没有注册过的用户在输入任何值时点击确定按钮都会弹出提示框“注册信息已过期”，并在2秒后转到转到注册页面
-	*/
 	$("#startwork").click(function() {
 		$("#layer").fadeIn(1000);
 		$("#pwdbtn").click(function() {
