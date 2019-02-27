@@ -1,7 +1,7 @@
 window.onload = function() {
 	$("#btn").click(function() {
 		var cookieInfo = getCookie("infor");
-		if(cookieInfo != 0) { //说明已经注册过
+		if(cookieInfo.length != 0) { //说明已经注册过
 			//取出每一条数据
 			for(var i = 0; i < cookieInfo.length; i++) {
 				//遍历每一条数据中的uname值，如果当前输入框的值与其中一条数据的uname值相等，则结束循环
@@ -17,7 +17,7 @@ window.onload = function() {
 						$("#back").click(function() {
 							location.href = "login.html";
 						})
-					} else { //若信息填写不正确
+					} else { //若信息填写不正确(前提是用户名填写正确)
 						$("#information").fadeIn(1000);
 						$("#username").css("display", "none");
 						$("#pwd").css("display", "none");
@@ -30,15 +30,24 @@ window.onload = function() {
 						})
 					}
 					break;
+				}else{//全都填写错误（通过用户名找不到该用户）
+					$("#information").fadeIn(1000);
+					$("#username").css("display", "none");
+					$("#pwd").css("display", "none");
+					$("#back").css("display", "none");
+					$("#erorrinfor").html("你确定不是在瞎填!?");
+					//点击“重新填写”回到原页面以填写正确的信息
+					$("#rewrite").html("重新填写");
+					$("#rewrite").click(function() {
+						location.href = "forgetpwd.html";
+					})
 				}
 			}
 		} else { //说明没注册
 			//此时点击“查看密码”时会有提示信息，点击“去注册”则跳到注册页面
-			$("#btn").click(function() {
-				$("form").append(`<div class="warn">找不到该用户,是否<span>去注册?</span></div>`);
-				$(".warn").find("span").click(function() {
-					location.href = "register.html";
-				})
+			$("form").append(`<div class="warn">找不到该用户,是否<span>去注册?</span></div>`);
+			$(".warn").find("span").click(function() {
+				location.href = "register.html";
 			})
 		}
 	})

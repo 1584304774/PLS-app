@@ -141,7 +141,11 @@ window.onload = function() {
 					clearTimeout(timer);
 				}, 2000);
 			} else {
-				$s6.html("该用户已注册");
+				$s6.html("该用户已注册稍后跳转");
+				var timer1 = setTimeout(function(){
+					location.href = "login.html";
+					clearTimeout(timer1);
+				},2000);
 			}
 		} else {
 			//所填信息有错

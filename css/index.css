@@ -372,7 +372,8 @@ section {
 }
 
 .nowtime {
-	margin-left: 45%;
+	margin-left: 0.8rem;
+	font-size: 0.16rem;
 }
 
 
@@ -418,8 +419,9 @@ section {
 
 .showtime {
 	font-size: 0.2rem;
-	margin-left: 15%;
+	margin-left: 1rem;
 }
+
 
 
 /*休闲养生模式*/

@@ -64,10 +64,10 @@ window.onload = function() {
 	$portrait.click(function() {
 		//获取路径信息，在登录时记录了当前登录的用户的sid，根据sid可判断当前登录的是哪一个用户
 		var str = location.href;
-		str = str.split("?")[1];
-		sid = str.split("=")[1]; //取出sid
 		cookieInfo = getCookie("infor");
-		if(cookieInfo != "") { //说明已经注册
+		if(cookieInfo.length != 0) { //说明已经注册
+			str = str.split("?")[1];
+			sid = str.split("=")[1]; //取出sid
 			for(var i = 0; i < cookieInfo.length; i++) {
 				if(sid == cookieInfo[i].sid) {
 					//找到了当前登录的用户
@@ -88,7 +88,7 @@ window.onload = function() {
 		}, 1000, function() {
 			//之后点击设置键入可编辑信息栏
 			$(".icon-shezhi2").click(function() {
-				if(cookieInfo != "") { //说明已注册
+				if(cookieInfo.length != 0) { //说明已注册
 					for(var i = 0; i < cookieInfo.length; i++) {
 						if(sid == cookieInfo[i].sid) {
 							//找到了当前登录的用户
@@ -188,29 +188,32 @@ window.onload = function() {
 	})
 	//点击“注销账号”删除cookie，且回到start.html重新注册
 	$("#setup").find("h2").eq(2).click(function() {
-		//删除cookie???????
+		//删除cookie
 		var str = location.href;
-		str = str.split("?")[1];
-		sid = str.split("=")[1];
 		var cookieInfo = getCookie("infor");
-		if(cookieInfo.length != 0) {
+		if(cookieInfo.length != 0) {//已经在登录状态，之前也注册过
+			str = str.split("?")[1];
+			sid = str.split("=")[1];
 			for(var i = 0; i < cookieInfo.length; i++) {
 				if(sid == cookieInfo[i].sid) {
 					var index = i;
-					cookieInfo[index].uname = "";
-					cookieInfo[index].phone = "";
-					cookieInfo[index].uemail = "";
-					cookieInfo[index].pwd = "";
-					cookieInfo[index].sex = "";
-					cookieInfo[index].birth = "";
-					cookieInfo[index].sid = "";
+					cookieInfo.splice(index,1);//将当前找到的数据从数组中删除
 					setCookie("infor", JSON.stringify(cookieInfo), 3);
-					location.href = "register.html";
+					location.href = "start.html";
 					break;
 				}
 			}
+		}else{//说明未注册
+			//提示框显示
+			$("#unregistered").fadeIn(1000);
+			//经过2秒后提示框消失，且跳转到注册页面
+			var timer = setTimeout(function() {
+				$("#unregistered").fadeOut(1000);
+				location.href = "register.html";
+				//清除延时器，提高效率
+				clearTimeout(timer);
+			}, 2000);
 		}
-		//location.href = "start.html";
 	})
 
 	//社交圈版块内容
@@ -260,9 +263,14 @@ window.onload = function() {
 										<dd></dd>
 									</dl>
 									<div class='msgTxt'>${txt}</div>
+									<a href="javascript:;" id="delshowbox" style='font-size:0.2rem;color:#000;margin-left:2.3rem;'>删除</a>
 								</div>`);
 		//内容发布后内容框清空
 		$(".message").html("");
+		//点击删除实现删除整个发布的内容框(只删除新发布的内容,只删除当前点击删除的这一条内容框)
+		$("#delshowbox").click(function(){
+			$(this).parent().remove();
+		});
 		//获取用户名和时间，显示在发表的内容中
 		var cookieInfo = getCookie("infor");
 		if(cookieInfo.length != 0) {
@@ -296,12 +304,12 @@ window.onload = function() {
 		async: true //表示异步
 	});
 	deff.done(function(msg) { //通过done方法获取服务器的数据，deff为deffered对象
-		GetSrc(0, msg[0].src);
-		GetSrc(1, msg[1].src);
-		GetSrc(2, msg[2].src);
-		GetSrc(3, msg[3].src);
-		GetSrc(4, msg[4].src);
-		GetSrc(5, msg[0].src); //第六张图片时第一张图片
+		GetSrc(0, msg[9].src);
+		GetSrc(1, msg[10].src);
+		GetSrc(2, msg[11].src);
+		GetSrc(3, msg[13].src);
+		GetSrc(4, msg[5].src);
+		GetSrc(5, msg[9].src); //第六张图片时第一张图片
 	})
 	//无缝轮播图(原生js实现)
 	var index = 0;
@@ -425,9 +433,9 @@ window.onload = function() {
 		$("#pwdbtn").click(function() {
 			var cookieInfo = getCookie("infor");
 			var str = location.href;
-			str = str.split("?")[1];
-			sid = str.split("=")[1];
-			if(cookieInfo.length != 0) {
+			if(cookieInfo.length != 0) {//说明已经注册
+				str = str.split("?")[1];
+				sid = str.split("=")[1];
 				for(var i = 0; i < cookieInfo.length; i++) {
 					if(sid == cookieInfo[i].sid) {
 						//找到当前登录的用户
